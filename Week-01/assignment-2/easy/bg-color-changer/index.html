@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .outer-container{
+            display: flex;
+            justify-content: center;
+            align-items: end;;
+            height: 100vh;
+        }
+
+
+        .container{
+            display:flex;
+            justify-content: space-around;
+            
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+            ;
+        }
+
+        .colorButton{
+            padding:5px 20px;
+            margin:6px;
+            border:none;
+            border-radius: 30%;;
+            
+        }
+        #red{
+            background-color: red;;
+        }
+    </style>
+
+
+</head>
+<body>
+    <div class="outer-container">
+    <div class="container">
+        <button onclick="changeBgColor('red')"    class="colorButton" id="red" >Red</button>
+        <button onclick="changeBgColor('yellow')" class="colorButton" id="yellow">Yellow</button>
+        <button onclick="changeBgColor('black')"  class="colorButton" id="black">Black</button>
+        <button onclick="changeBgColor('purple')" class="colorButton" id="purple">Purple</button>
+        <button onclick="changeBgColor('green')"  class="colorButton" id="green">Green</button>
+    </div>
+</div>
+</body>
+
+<script>
+
+    function changeBgColor(col){
+        document.body.style.backgroundColor=col;
+    }
+</script>
+</html>

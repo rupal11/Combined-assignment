@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+        .container{
+            /* text-align: center; */
+            display:flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content:center ;
+
+        }
+
+        .option-row{
+            display:flex;
+            gap:8px;
+        }
+    </style>>
+  </head>
+  <body>
+      <div class="container">
+
+    <h1 id="question"></h1>
+
+    <!-- //input-a -->
+    <div class="option-row">
+    <input type="radio" id="a" name="quiz-option" >
+    <label for"a" id="label-a"></label>
+</div>
+
+    <!-- //input-a -->
+    <div class="option-row">
+    <input type="radio" id="b" name="quiz-option">
+    <label for"b" id="label-b"></label>
+</div>
+
+    <!-- //input-a -->
+    <div class="option-row">
+    <input type="radio" id="c" name="quiz-option">
+    <label for"c" id="label-c"></label>
+</div>
+
+    <!-- //input-a -->
+    <div class="option-row">
+    <input type="radio" id="d" name="quiz-option">
+    <label for"d" id="label-d"></label>
+</div>
+
+
+
+
+<button type="submit" id="submit-btn">Submit</button>
+      </div>
+   
+  </body>
+  <script type="module">  
+    import {quizData} from './data.js'
+
+    let points=0;
+    let i=0;
+
+    func();
+
+
+    function func(i=0){
+
+    document.getElementById("question").innerHTML=quizData[i].question;
+
+    // a
+    document.getElementById("label-a").innerHTML=quizData[i].a;
+    document.getElementById("a").value=quizData[i].a;
+
+    // b
+    document.getElementById("label-b").innerHTML=quizData[i].b;
+    document.getElementById("b").value=quizData[i].b;
+
+    // c
+    document.getElementById("label-c").innerHTML=quizData[i].c;
+    document.getElementById("c").value=quizData[i].c;
+
+    // d
+    document.getElementById("label-d").innerHTML=quizData[i].d;
+    document.getElementById("d").value=quizData[i].d;
+
+    }
+    
+
+    const submitBtn = document.getElementById("submit-btn");
+
+    submitBtn.addEventListener("click", () =>{
+
+    // console.log(selected);
+
+    const selected = document.querySelector('input[name="quiz-option"]:checked');
+    
+
+    if(selected && selected.id==quizData[i].correct){
+        console.log(selected);
+        
+        points++;
+        console.log(points);
+        
+        
+        
+    }
+    
+    i++;
+
+if(i==quizData.length){
+    // 2. Clear the entire body content
+    document.body.innerHTML = ""; 
+
+// 3. Create a new h1 element
+const newHeading = document.createElement("h1");
+newHeading.innerHTML = "Thank you for completing the quiz!";
+
+const scoreHeading = document.createElement("h1");
+scoreHeading.innerHTML = points + "/" + quizData.length + " are correct" ;
+
+// 4. Append the new h1 to the body
+document.body.appendChild(newHeading);
+document.body.appendChild(scoreHeading);
+}else{
+    
+    func(i);
+}
+
+});
+
+  </script>
+</html>
