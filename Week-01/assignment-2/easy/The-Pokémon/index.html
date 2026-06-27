@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Hi Pokemon fan, enter your details here!</h1>
+
+    <label>No of Input:</label>
+    <input type="number" placeholder="Enter a number" id="num" />
+
+    <label>Category:</label>
+
+    <select id="cat">
+      <option value="grass">Grass</option>
+      <option value="fire">Fire</option>
+      <option value="water">Water</option>
+    </select>
+
+    <button onclick="submit()">Submit</button>
+  </body>
+  <script>
+    function submit() {
+      let num = parseInt(document.getElementById("num").value);
+      let cat = document.getElementById("cat").value;
+
+      console.log(num, cat);
+
+      let url = "https://pokeapi.co/api/v2/pokemon/" + num;
+      console.log(url);
+
+      const xhttpr = new XMLHttpRequest();
+      xhttpr.open("GET", url, true);
+
+      xhttpr.send();
+
+      xhttpr.onload = () => {
+        if (xhttpr.status === 200) {
+          const response = JSON.parse(xhttpr.response);
+          console.log(response);
+          console.log(response.name);
+          console.log(response.sprites.back_default);
+
+
+          let pokemonName = response.name;
+          let pokemonImage = response.sprites.back_default;
+
+            //outer div
+          let containerDiv = document.createElement("div");
+
+           //name 
+          let nameElement = document.createElement("h2");
+          nameElement.innerHTML=pokemonName;
+
+          let img=document.createElement("img");
+          img.src=pokemonImage; 
+
+          containerDiv.appendChild(nameElement);
+          containerDiv.appendChild(img);
+
+          document.body.appendChild(containerDiv);
+
+
+
+          // Process the response data here
+        } else {
+          // Handle error
+        }
+      };
+    }
+  </script>
+</html>

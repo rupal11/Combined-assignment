@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        body{
+            background-color:#e4e4e4;
+            margin:0;
+            
+            
+        }
+        input,select{
+            width:100%;
+        }
+
+        button{
+            margin:15px 0;
+            padding:10px;
+            width:100%;
+            background-color:#1e90ff;
+            color:#fff;
+            border:none;
+            cursor:pointer;
+        }
+
+
+        .container{
+            display:flex;
+            gap:15px;
+            height:100vh;
+        }
+
+
+        .form-preview, .form-builder{
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            padding:10px;
+            margin:10px;
+            background-color:#fff;
+            width:50%;
+            /* height: 100vh */
+
+        }
+    </style>
+</head>
+
+
+<body>
+
+    <div class="container">
+        
+        <!-- form preview -->
+        <div class="form-preview">
+            <h1>Form Preview</h1>
+
+            <h3>Select Field Type</h3>
+            <select id="field-type">
+                <option value="text">Text</option>
+                <option value="email">Email</option>
+                <option value="password">Password</option>
+                <option value="number">Number</option>
+            </select>
+
+            <h3>Field Label</h3>
+            <input type="text" id="field-label" placeholder="Enter Field Label" required>
+
+            <button onclick="addField()">Add Field</button>
+
+
+        </div>
+        <!-- form builder -->
+        <div class="form-builder">
+            <h1>Form Builder</h1>
+
+        </div>
+
+
+
+    </div>
+    
+</body>
+<script>
+
+    function addField(){
+       let fieldType = document.getElementById('field-type').value;
+        let fieldName = document.getElementById('field-label').value;
+
+
+        let formBuilder = document.querySelector('.form-builder');
+
+        let newFieldDiv=document.createElement('div');
+
+        let newField=document.createElement('input');
+        newField.type=fieldType;
+        newField.id=fieldName;
+
+        let newFieldLabel=document.createElement('label');
+        newFieldLabel.innerHTML=fieldName;
+        newFieldLabel.htmlFor=fieldName;
+
+        newFieldDiv.appendChild(newFieldLabel);
+        newFieldDiv.appendChild(newField);
+
+        formBuilder.appendChild(newFieldDiv);
+    }
+</script>
+</html>
